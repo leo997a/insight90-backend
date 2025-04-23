@@ -21,7 +21,8 @@ def extract_match_data(url: str = Query(...)):
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    options.binary_location = '/usr/bin/chromium'
+    driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver', options=options)
     try:
         driver.get(url)
         html = driver.page_source
